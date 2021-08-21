@@ -2,11 +2,9 @@ package com.arttseng.newsfeedwits.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.arttseng.newsfeedwits.data.CategoryBean
 import com.arttseng.newsfeedwits.data.NewsBean
 import com.arttseng.newsfeedwits.data.ProviderBean
-import kotlinx.coroutines.launch
 
 class NewsViewModel:ViewModel() {
     val dataRepository = NewsRepository()
@@ -15,24 +13,33 @@ class NewsViewModel:ViewModel() {
     val categoryBean = MutableLiveData<List<CategoryBean>>()
     val newsBean = MutableLiveData<List<NewsBean>>()
     var allNews = mutableListOf<NewsBean>()
+    var newsItem = MutableLiveData<NewsBean>()
 
     fun getNewsProviders() {
-        viewModelScope.launch {
+        //viewModelScope.launch {
             providerBean.value = dataRepository.getNewsProviders()
-        }
+        //}
     }
 
     fun getNewsCategories() {
-        viewModelScope.launch {
+        //viewModelScope.launch {
             categoryBean.value = dataRepository.getNewsCategories()
-        }
+        //}
     }
 
     fun getNews() {
-        viewModelScope.launch {
+        //viewModelScope.launch {
             allNews.addAll(dataRepository.getNews())
             newsBean.value = allNews.toList()
+        //}
+    }
+
+    fun getNewsItem(askId:Long) {
+        if(allNews.size==0) {
+            allNews.addAll(dataRepository.getNews())
         }
+        val result = allNews.filter { it.id==askId}
+        newsItem.value = result[0]
     }
 
     fun getNewsBy(provider_id:Int, category_id:Int) {

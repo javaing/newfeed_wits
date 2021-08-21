@@ -1,5 +1,6 @@
 package com.arttseng.newsfeedwits
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sp_category: Spinner
     private lateinit var sp_provider: Spinner
     private lateinit var recycler: RecyclerView
-    private lateinit var tv_setting: TextView
+    private lateinit var iv_setting: ImageView
     private val vm = NewsViewModel()
 
 
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         sp_category = findViewById(R.id.sp_category)
         sp_provider = findViewById(R.id.sp_provider)
         recycler = findViewById(R.id.recycler)
-        tv_setting= findViewById(R.id.tv_setting)
+        iv_setting= findViewById(R.id.iv_setting)
 
         swipeRefreshLayout.setOnRefreshListener {
             refreshNews()
@@ -46,16 +47,23 @@ class MainActivity : AppCompatActivity() {
             }, 1000)
         }
 
-        sp_category.setOnItemClickListener { parent, view, position, id ->
-            refreshNews()
+        sp_category.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+                refreshNews()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
         }
 
-        sp_provider.setOnItemClickListener { parent, view, position, id ->
-            refreshNews()
+        sp_provider.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+                refreshNews()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
         }
 
-        tv_setting.setOnClickListener {
-            //edit new provider
+        iv_setting.setOnClickListener {
 
         }
 
@@ -63,7 +71,12 @@ class MainActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recycler.layoutManager = layoutManager
-        recycler.adapter = DataAdapter(listOf<NewsBean>())
+        recycler.adapter = DataAdapter(listOf()) {
+            val intent = Intent(this, DetailActivity::class.java).apply {
+                putExtra("NEWSID", it.id)
+            }
+            startActivity(intent)
+        }
     }
 
     private fun refreshNews() {

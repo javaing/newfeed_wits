@@ -10,7 +10,7 @@ import com.arttseng.newsfeedwits.data.NewsBean
 
 
 
-class DataAdapter(private var mData: List<NewsBean>) : RecyclerView.Adapter<DataAdapter.MyViewHolder>() {
+class DataAdapter(private var mData: List<NewsBean>, var onItemClick: ((NewsBean) -> Unit)? = null) : RecyclerView.Adapter<DataAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
         return MyViewHolder(v)
@@ -20,9 +20,9 @@ class DataAdapter(private var mData: List<NewsBean>) : RecyclerView.Adapter<Data
         holder.dataView.text = mData[position].date +"\n"+ mData[position].time
         holder.title.text = mData[position].title
         holder.subtitle.text = mData[position].subtitle
-        holder.itemView.setOnClickListener {
-            Toast.makeText(it.context, "Item $position is clicked.看明細 ", Toast.LENGTH_SHORT).show()
-        }
+//        holder.itemView.setOnClickListener {
+//            Toast.makeText(it.context, "Item $position is clicked.看明細 ", Toast.LENGTH_SHORT).show()
+//        }
     }
 
     override fun getItemCount(): Int {
@@ -36,10 +36,16 @@ class DataAdapter(private var mData: List<NewsBean>) : RecyclerView.Adapter<Data
     }
 
 
-    class MyViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+    inner class MyViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val dataView: TextView = v.findViewById(R.id.tv_datetime)
         val title: TextView = v.findViewById(R.id.tv_title)
         val subtitle: TextView = v.findViewById(R.id.tv_subtitle)
+
+        init {
+            itemView.setOnClickListener {
+                onItemClick?.invoke(mData[adapterPosition])
+            }
+        }
     }
 
 }

@@ -1,8 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'realm-android'
+    //id 'kotlin-kapt'
+    //id 'realm-android'
 }
 
 android {
@@ -46,12 +46,12 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-    implementation 'io.realm:android-adapters:3.1.0'
-    implementation 'io.realm:realm-annotations:10.7.1'
-
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2"
-    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+//    implementation 'io.realm:android-adapters:3.1.0'
+//    implementation 'io.realm:realm-annotations:10.7.1'
+//
+//    implementation 'androidx.core:core-ktx:1.6.0'
+//    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
+//    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2"
+//    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+//    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
 }
