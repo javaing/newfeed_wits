@@ -4,5 +4,5 @@ open class ProviderBean(
     var id: Long = 0,
     var name: String="",
     var desc: String = "",
-    var isSubscrib: Boolean = true
+    var isSubscribe: Boolean = true
     )

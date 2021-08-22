@@ -1,19 +1,19 @@
-package com.arttseng.newsfeedwits
+package com.arttseng.newsfeedwits.ui
 
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.arttseng.newsfeedwits.R
 import com.arttseng.newsfeedwits.data.NewsBean
 
 
 
 class DataAdapter(private var mData: List<NewsBean>, var onItemClick: ((NewsBean) -> Unit)? = null) : RecyclerView.Adapter<DataAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_newslist, parent, false)
         return MyViewHolder(v)
     }
 
@@ -26,9 +26,6 @@ class DataAdapter(private var mData: List<NewsBean>, var onItemClick: ((NewsBean
             holder.parent.setBackgroundColor(Color.LTGRAY)
         else
             holder.parent.setBackgroundColor(Color.TRANSPARENT)
-//        holder.itemView.setOnClickListener {
-//            Toast.makeText(it.context, "Item $position is clicked.看明細 ", Toast.LENGTH_SHORT).show()
-//        }
     }
 
     override fun getItemCount(): Int {

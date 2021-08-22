@@ -21,7 +21,6 @@ class DialogAdapter : RecyclerView.Adapter<DialogAdapter.MyViewHolder>() {
         }
 
         private var data = listOf<ProviderBean>()
-        //private val choices = hashMapOf<Int, Boolean>()
         lateinit var getDataCallBack: GetDataCallBack
 
 
@@ -35,9 +34,9 @@ class DialogAdapter : RecyclerView.Adapter<DialogAdapter.MyViewHolder>() {
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
             val it = data[position]
             holder.itemCheck.text = data[position].name
-            holder.itemCheck.isChecked = data[position].isSubscrib
+            holder.itemCheck.isChecked = data[position].isSubscribe
             holder.itemCheck.setOnClickListener {
-                data[position].isSubscrib = !data[position].isSubscrib!!
+                data[position].isSubscribe = !data[position].isSubscribe!!
                 notifyDataSetChanged()
                 getDataCallBack.getDataChange(data)
             }
