@@ -1,5 +1,6 @@
 package com.arttseng.newsfeedwits
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,9 +18,14 @@ class DataAdapter(private var mData: List<NewsBean>, var onItemClick: ((NewsBean
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.dataView.text = mData[position].date +"\n"+ mData[position].time
-        holder.title.text = mData[position].title
-        holder.subtitle.text = mData[position].subtitle
+        val bean = mData[position]
+        holder.dataView.text = bean.date +"\n"+ bean.time
+        holder.title.text = bean.title
+        holder.subtitle.text = bean.subtitle
+        if(bean.isRead)
+            holder.parent.setBackgroundColor(Color.LTGRAY)
+        else
+            holder.parent.setBackgroundColor(Color.TRANSPARENT)
 //        holder.itemView.setOnClickListener {
 //            Toast.makeText(it.context, "Item $position is clicked.看明細 ", Toast.LENGTH_SHORT).show()
 //        }
@@ -37,6 +43,7 @@ class DataAdapter(private var mData: List<NewsBean>, var onItemClick: ((NewsBean
 
 
     inner class MyViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+        val parent = v
         val dataView: TextView = v.findViewById(R.id.tv_datetime)
         val title: TextView = v.findViewById(R.id.tv_title)
         val subtitle: TextView = v.findViewById(R.id.tv_subtitle)
