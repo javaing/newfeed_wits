@@ -18,14 +18,7 @@ class NewsRepository {
     }
 
 
-
-    fun getDummyProviders():List<ProviderBean> {
-//        val realm = MyApp._instance?.getRealm()
-//        val result = realm?.where<ProviderBean>()?.findAll()
-//
-//        realm?.use {
-//            if (result?.size==0) {
-//                realm.beginTransaction()
+    private fun getDummyProviders():List<ProviderBean> {
         val data = arrayListOf<ProviderBean>()
         data.add(ProviderBean(0,"Sources", "desc"))
         data.add(ProviderBean(1,"Daily Times", "desc1"))
@@ -33,22 +26,10 @@ class NewsRepository {
         data.add(ProviderBean(3,"Daily Bugle", "desc3"))
         data.add(ProviderBean(4,"New News", "desc4"))
         data.add(ProviderBean(5,"News Now", "desc5"))
-//                realm.copyToRealmOrUpdate<RealmObject>(data)
-//                realm.commitTransaction()
-//            }
-//        }
-//
-//        return result?.toList() ?: listOf()
         return data.toList()
     }
 
-    fun getDummyCategory():List<CategoryBean> {
-//        val realm = MyApp._instance?.getRealm()
-//        val result = realm?.where<CategoryBean>()?.findAll()
-//
-//        realm?.use {
-//            if (result?.size==0) {
-//                realm.beginTransaction()
+    private fun getDummyCategory():List<CategoryBean> {
         val data = arrayListOf<CategoryBean>()
         data.add(CategoryBean(0,"Categories"))
         data.add(CategoryBean(1,"Crime"))
@@ -60,21 +41,10 @@ class NewsRepository {
         data.add(CategoryBean(7,"Politics"))
         data.add(CategoryBean(8,"Religion"))
         data.add(CategoryBean(9,"Science"))
-//                realm.copyToRealmOrUpdate<RealmObject>(data)
-//                realm.commitTransaction()
-//            }
-//        }
-//        return result?.toList() ?: listOf()
         return data.toList()
     }
 
-    fun getDummyNews():List<NewsBean> {
-//        val realm = MyApp._instance?.getRealm()
-//        val result = realm?.where<NewsBean>()?.findAll()
-//
-//        realm?.use {
-//            if (result?.size==0) {
-//                realm.beginTransaction()
+    private fun getDummyNews():List<NewsBean> {
         val data = arrayListOf<NewsBean>()
         data.add(NewsBean(1, "Business title", "sub provide1", "RJ", "2021/8/21", "23:27:01",  2,1))
         data.add(NewsBean(2, "Entertainment title", "sub provide2", "C. W. Shin", "2021/8/21", "10:27:01",  4,2))
@@ -96,12 +66,6 @@ class NewsRepository {
         data.add(NewsBean(18, "Family title", "sub provide2", "John Lennon", "2021/9/1", "10:27:01",  5,2))
         data.add(NewsBean(19, "Religion title", "sub provide3", "Sex Pistol", "2021/9/1", "10:27:01",  8,3))
         data.add(NewsBean(20, "Health title", "sub provide1", "London Calling", "2021/9/1", "10:27:01",  6,1))
-
-//                realm.copyToRealmOrUpdate<RealmObject>(data)
-//                realm.commitTransaction()
-//            }
-//        }
-//        return result?.toList() ?: listOf()
         return data.toList()
     }
 
